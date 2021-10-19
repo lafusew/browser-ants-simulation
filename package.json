@@ -18,6 +18,7 @@
     "start": "parcel serve src/index.html",
     "build": "cross-env NODE_ENV=production parcel build src/index.html --public-url .",
     "watch": "parcel watch src/index.html",
+    "predeploy": "rm -rf dist && cross-env NODE_ENV=production parcel build src/index.html --public-url .",
     "deploy": "gh-pages -d dist",
     "lint": "eslint src/index.ts"
   },
