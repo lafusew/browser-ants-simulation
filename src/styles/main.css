@@ -1,5 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono&display=swap');
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+section {
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  color: #222222;
+}
+
+h1 {
+  font-weight: 300;
+  font-size: 36px;
+  margin-bottom: 24px;
+}
+
+strong {
+  font-weight: 700;
+  color: #2f5bff;
+}
+
+p {
+  text-align: center;
+}
+
+code {
+  margin: 32px 16px; 
+  padding: 8px 16px;
+  border-radius: 4px;
+  background-color: #dddddd;
+  color: #6e6e6e;
+  font-family: 'Noto Sans Mono', monospace;
 }
