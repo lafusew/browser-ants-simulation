@@ -3,9 +3,9 @@
     "lib": "lib",
     "test": "test"
   },
-  "name": "game-of-life",
+  "name": "parcel-typescript",
   "version": "0.0.1",
-  "description": "Conway's Game of Life",
+  "description": "Parcel Typescript \"starter kit\"",
   "main": "src/index.ts",
   "author": "lafusew",
   "license": "MIT",
