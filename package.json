@@ -23,8 +23,6 @@
   },
   "devDependencies": {
     "cross-env": "^5.2.0",
-    "@parcel/compressor-raw": "^2.0.0",
-    "@parcel/transformer-sass": "^2.0.0",
     "@typescript-eslint/eslint-plugin": "^4.28.2",
     "@typescript-eslint/parser": "^4.28.2",
     "eslint": "^7.30.0",
