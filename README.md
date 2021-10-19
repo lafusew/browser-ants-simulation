@@ -6,6 +6,7 @@ Start right now, create a new repo and clone this one into it:
 git clone https://github.com/lafusew/vanilla-typescript-starter.git .
 ```
 If you're using **vscode** make sure you have Eslint and Typescript extension installed to be able to use `.vscode/settings.json` presets.
+Don't enable Prettier plugin. We're using Prettier as a plugin throught Eslint.
 
 Edit this part of this `package.json`
 
