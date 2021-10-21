@@ -7,35 +7,37 @@ const HEIGHT = window.innerHeight;
 const canvas = document.createElement('canvas');
 const ctx = canvas.getContext('2d');
 
-const antsPool: Ant[] = [];
+const ants: Ant[] = [];
 
-function populateAntPool(amount: number): void {
+function createAnts(amount: number): void {
   for (let i = 0; i < amount; i++) {
     const x = canvas.width / 2;
     const y = canvas.height / 2;
     const angle = randomIntFromInterval(0, 360);
-    antsPool.push(new Ant(x, y, angle, canvas.width, canvas.height));
+    ants.push(new Ant(x, y, angle, canvas.width, canvas.height));
   }
 }
 
-function init(): void {
+function init(ctx: CanvasRenderingContext2D): void {
   canvas.height = HEIGHT;
   canvas.width = WIDTH;
+  ctx.fillStyle = '#191019';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
   document.getElementById('app')?.append(canvas);
-  populateAntPool(10);
+  createAnts(20000);
 }
 
 function draw(ctx: CanvasRenderingContext2D): void {
-  ctx.fillStyle = 'rgba( 27, 38, 49, 0.1)';
+  ctx.fillStyle = 'rgba(25, 16, 25, 0.1)';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
-  requestAnimationFrame(() => draw(ctx));
-  antsPool.forEach((ant) => {
+  ants.forEach((ant) => {
     ant.moove();
     const renderedAnt = new Path2D();
-    renderedAnt.arc(ant.x, ant.y, 3, 0, 2 * Math.PI);
+    renderedAnt.arc(ant.x, ant.y, 1, 0, 2 * Math.PI);
     ctx.fillStyle = ant.color;
     ctx.fill(renderedAnt);
   });
+  requestAnimationFrame(() => draw(ctx));
 }
 // Fullscreen canvas
 window.addEventListener('resize', () => {
@@ -44,6 +46,6 @@ window.addEventListener('resize', () => {
 });
 
 if (ctx) {
-  init();
+  init(ctx);
   draw(ctx);
 }

@@ -1,5 +1,10 @@
-import { degToRad } from './helpers/maths';
+import {
+  createRandArray,
+  degToRad,
+  randomIntFromInterval
+} from './helpers/maths';
 
+const RANDOM_POOL = createRandArray(10000);
 enum Turn {
   RIGHT = 'right',
   LEFT = 'left',
@@ -8,10 +13,12 @@ enum Turn {
 
 export class Ant {
   private speed = 1;
-  private turnDegAngle = 5;
+  private turnDegAngle = 3;
   private turningDir: Turn = Turn.NULL;
   private rad: number;
-  public color = '#fff'; // + Math.floor(Math.random() * 16777215).toString(16);
+  public randPoolIndex: number = randomIntFromInterval(0, RANDOM_POOL.length);
+  public color = '#D0CD94';
+  //+ Math.floor(Math.random() * 16777215).toString(16);
 
   canvasWidth: number;
   canvasHeight: number;
@@ -43,13 +50,19 @@ export class Ant {
   }
 
   wonderAround(): void {
-    this.intend = Math.random();
+    // get a random value from the pre-generated arr
+    this.intend = RANDOM_POOL[this.randPoolIndex];
+    if (this.randPoolIndex >= RANDOM_POOL.length - 1) {
+      this.randPoolIndex = 0;
+    } else {
+      this.randPoolIndex += 1;
+    }
 
     if (this.turningDir === Turn.NULL) {
-      if (this.intend < 0.05) {
+      if (this.intend < 0.001) {
         this.turningDir = Turn.RIGHT;
-      } else if (this.intend > 0.95) {
-        this.turningDir = Turn.LEFT;
+      } else if (this.intend > 0.999) {
+        this.turningDir = Turn.RIGHT;
       }
     } else {
       this.manageCurrentTurn();
@@ -62,9 +75,9 @@ export class Ant {
     } else {
       this.turnRight();
     }
-    if (this.intend < 0.2) {
-      this.turningDir = Turn.NULL;
-    }
+    // if (this.intend < 0.2) {
+    //   this.turningDir = Turn.NULL;
+    // }
   }
 
   turnRight(): void {
