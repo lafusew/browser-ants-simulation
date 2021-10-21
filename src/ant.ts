@@ -66,10 +66,9 @@ export class Ant {
       } else if (this.intend > 0.92) {
         this.turningDir = Turn.LEFT;
       }
+    } else {
+      this.manageCurrentTurn();
     }
-    //  else {
-    //   this.manageCurrentTurn();
-    // }
   }
 
   // lookForPheromonePath() {}
