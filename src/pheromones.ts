@@ -1,4 +1,4 @@
-export interface DataTile {
+export interface PheromoneTile {
   x: number;
   y: number;
   size: number;
@@ -7,18 +7,20 @@ export interface DataTile {
   foodConcentration: number;
 }
 
-export function generateDataTileMap(
+export type PheromoneDataGrid = PheromoneTile[][];
+
+export function generatePheromoneDataGrid(
   cellSize: number,
   canvasWidth: number,
   canvasHeight: number
-): DataTile[][] {
-  const rows = Math.floor(canvasHeight / cellSize);
-  const columns = Math.floor(canvasWidth / cellSize);
-  const dataTileMap: DataTile[][] = [];
+): PheromoneDataGrid {
+  const rows = Math.floor(canvasHeight / cellSize) + 1;
+  const columns = Math.floor(canvasWidth / cellSize) + 1;
+  const pheromoneTileMap: PheromoneTile[][] = [];
   for (let i = 0; i < rows; i++) {
-    dataTileMap.push([]);
+    pheromoneTileMap.push([]);
     for (let j = 0; j < columns; j++) {
-      const dataTile: DataTile = {
+      const dataTile: PheromoneTile = {
         x: j * cellSize,
         y: i * cellSize,
         size: cellSize,
@@ -26,8 +28,18 @@ export function generateDataTileMap(
         toHomePheromoneConcentration: 0,
         foodConcentration: 0
       };
-      dataTileMap[i].push(dataTile);
+      pheromoneTileMap[i].push(dataTile);
     }
   }
-  return dataTileMap;
+  return pheromoneTileMap;
+}
+
+export function getMapIndexesFromPos(
+  x: number,
+  y: number,
+  cellSize: number
+): { rowI: number; columnI: number } {
+  const rowI = Math.floor(y / cellSize);
+  const columnI = Math.floor(x / cellSize);
+  return { rowI, columnI };
 }

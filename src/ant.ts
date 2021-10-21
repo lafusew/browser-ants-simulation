@@ -13,12 +13,12 @@ enum Turn {
 
 export class Ant {
   private speed = 0.5;
-  private turnDegAngle = 1.618;
+  private turnDegAngle = 2.4;
   private turningDir: Turn = Turn.NULL;
   private rad: number;
   public randPoolIndex: number = randomIntFromInterval(0, RANDOM_POOL.length);
   public color = '#D0CD94';
-  //+ Math.floor(Math.random() * 16777215).toString(16);
+  public isHoldingFood = false;
 
   canvasWidth: number;
   canvasHeight: number;
@@ -88,5 +88,19 @@ export class Ant {
   turnLeft(): void {
     this.deg -= this.turnDegAngle;
     this.rad = degToRad(this.deg);
+  }
+
+  public respawn(): void {
+    this.x = this.canvasWidth / 2;
+    this.y = this.canvasHeight / 2;
+  }
+
+  public dropFood(): void {
+    this.isHoldingFood = false;
+  }
+
+  public takeFood(): void {
+    this.isHoldingFood = true;
+    this.rad -= Math.PI;
   }
 }
