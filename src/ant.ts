@@ -13,7 +13,7 @@ enum Turn {
 
 export class Ant {
   private speed = 0.5;
-  private turnDegAngle = 2.5;
+  private turnDegAngle = 1.618;
   private turningDir: Turn = Turn.NULL;
   private rad: number;
   public randPoolIndex: number = randomIntFromInterval(0, RANDOM_POOL.length);
@@ -75,7 +75,7 @@ export class Ant {
     } else {
       this.turnRight();
     }
-    if (this.intend < 0.2) {
+    if (this.intend < 0.1) {
       this.turningDir = Turn.NULL;
     }
   }

@@ -1,51 +1,17 @@
-import { Ant } from './ant';
-import { randomIntFromInterval } from './helpers/maths';
+import { generateDataTileMap } from './pheromones';
+import { setCanvasSize, start } from './render/canvas';
 
-const WIDTH = window.innerWidth;
-const HEIGHT = window.innerHeight;
+let canvasWidth: number = window.innerWidth * 0.7;
+let canvasHeight: number = window.innerHeight * 0.7;
+const ANTS_POPULATION = 1000;
 
-const canvas = document.createElement('canvas');
-const ctx = canvas.getContext('2d');
+console.log(generateDataTileMap(10, canvasWidth, canvasHeight));
 
-const ants: Ant[] = [];
-
-function createAnts(amount: number): void {
-  for (let i = 0; i < amount; i++) {
-    const x = canvas.width / 2;
-    const y = canvas.height / 2;
-    const angle = randomIntFromInterval(0, 360);
-    ants.push(new Ant(x, y, angle, canvas.width, canvas.height));
-  }
-}
-
-function init(ctx: CanvasRenderingContext2D): void {
-  canvas.height = HEIGHT;
-  canvas.width = WIDTH;
-  ctx.fillStyle = '#0D080C';
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  document.getElementById('app')?.append(canvas);
-  createAnts(2);
-}
-
-function draw(ctx: CanvasRenderingContext2D): void {
-  ctx.fillStyle = 'rgba(13, 8, 12, 0.1)';
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  ants.forEach((ant) => {
-    ant.moove();
-    const renderedAnt = new Path2D();
-    renderedAnt.arc(ant.x, ant.y, 1, 0, 2 * Math.PI);
-    ctx.fillStyle = ant.color;
-    ctx.fill(renderedAnt);
-  });
-  requestAnimationFrame(() => draw(ctx));
-}
 // Fullscreen canvas
 window.addEventListener('resize', () => {
-  canvas.height = window.innerHeight;
-  canvas.width = window.innerWidth;
+  canvasWidth = window.innerWidth * 0.7;
+  canvasHeight = window.innerHeight * 0.7;
+  setCanvasSize(canvasWidth, canvasHeight);
 });
 
-if (ctx) {
-  init(ctx);
-  draw(ctx);
-}
+start(canvasWidth, canvasHeight, ANTS_POPULATION);
