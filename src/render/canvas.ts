@@ -33,28 +33,29 @@ function init(
 }
 
 function draw(ctx: CanvasRenderingContext2D): void {
-  ctx.fillStyle = 'rgba(13, 8, 12, 0.1)';
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-  // Debugger
+  /// pheromone display
   pheromoneMap.forEach((row) => {
     row.forEach((cell) => {
       // eslint-disable-next-line max-len
       if (cell.toHomePheromoneConcentration > 0) {
-        cell.toFoodPheromoneConcentration -= 0.0000002;
+        cell.toHomePheromoneConcentration -= 0.00003;
       }
-      if (cell.toHomePheromoneConcentration > 0) {
-        cell.toHomePheromoneConcentration -= 0.00002;
+      if (cell.toFoodPheromoneConcentration > 0) {
+        cell.toFoodPheromoneConcentration -= 0.00003;
       }
       ctx.fillStyle = `rgba( 255, 0, 0, ${cell.toHomePheromoneConcentration})`;
       ctx.fillRect(cell.x, cell.y, cell.size, cell.size);
       ctx.fillStyle = `rgba( 0, 255, 0, ${cell.toFoodPheromoneConcentration})`;
+      ctx.fillRect(cell.x, cell.y, cell.size, cell.size);
     });
   });
+  ctx.fillStyle = 'rgba(13, 8, 12, 0.1)';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   ants.forEach((ant) => {
     // this method handle all mooving behavior and updtate x & y
     ant.moove();
+    ant.getCurrenAngle();
     const antPos = {
       x: ant.x,
       y: ant.y
@@ -76,11 +77,10 @@ function draw(ctx: CanvasRenderingContext2D): void {
       );
 
       const currentTile = pheromoneMap[rowI][columnI];
-
       if (ant.isHoldingFood) {
-        currentTile.toFoodPheromoneConcentration += 0.001;
+        currentTile.toFoodPheromoneConcentration += 0.0005;
       } else {
-        currentTile.toHomePheromoneConcentration += 0.001;
+        currentTile.toHomePheromoneConcentration += 0.0005;
       }
 
       if (currentTile.foodConcentration > 0 && !ant.isHoldingFood) {

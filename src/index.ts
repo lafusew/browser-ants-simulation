@@ -1,14 +1,12 @@
-import { setCanvasSize, start } from './render/canvas';
+import { start } from './render/canvas';
 
-let canvasWidth: number = window.innerWidth * 0.7;
-let canvasHeight: number = window.innerHeight * 0.7;
-const ANTS_POPULATION = 1000;
+let canvasSize: number;
+if (window.innerHeight < 700) {
+  canvasSize = window.innerHeight * 0.7;
+} else {
+  canvasSize = window.innerWidth * 0.7 > 700 ? 700 : window.innerWidth * 0.7;
+}
 
-// Fullscreen canvas
-window.addEventListener('resize', () => {
-  canvasWidth = window.innerWidth * 0.7;
-  canvasHeight = window.innerHeight * 0.7;
-  setCanvasSize(canvasWidth, canvasHeight);
-});
+const ANTS_POPULATION = 1;
 
-start(canvasWidth, canvasHeight, ANTS_POPULATION);
+start(canvasSize, canvasSize, ANTS_POPULATION);

@@ -12,10 +12,11 @@ enum Turn {
 }
 
 export class Ant {
-  private speed = 0.5;
+  private speed = 0.6;
   private turnDegAngle = 2.4;
   private turningDir: Turn = Turn.NULL;
   private rad: number;
+  public baseRadAngle: number;
   public randPoolIndex: number = randomIntFromInterval(0, RANDOM_POOL.length);
   public color = '#D0CD94';
   public isHoldingFood = false;
@@ -38,6 +39,7 @@ export class Ant {
     this.y = y;
     this.rad = degToRad(angle);
     this.deg = angle;
+    this.baseRadAngle = this.rad;
     this.intend = 0.5;
     this.canvasHeight = canvasHeight;
     this.canvasWidth = canvasWidth;
@@ -64,10 +66,13 @@ export class Ant {
       } else if (this.intend > 0.92) {
         this.turningDir = Turn.LEFT;
       }
-    } else {
-      this.manageCurrentTurn();
     }
+    //  else {
+    //   this.manageCurrentTurn();
+    // }
   }
+
+  // lookForPheromonePath() {}
 
   manageCurrentTurn(): void {
     if (this.turningDir === Turn.LEFT) {
@@ -83,11 +88,21 @@ export class Ant {
   turnRight(): void {
     this.deg += this.turnDegAngle;
     this.rad = degToRad(this.deg);
+    while (this.rad > 2 * Math.PI) {
+      this.rad -= 2 * Math.PI;
+    }
   }
 
   turnLeft(): void {
     this.deg -= this.turnDegAngle;
     this.rad = degToRad(this.deg);
+    while (this.rad < -2 * Math.PI) {
+      this.rad += 2 * Math.PI;
+    }
+  }
+
+  public getCurrenAngle(): void {
+    console.log(Math.abs(this.rad) / (2 * Math.PI));
   }
 
   public respawn(): void {
@@ -101,6 +116,8 @@ export class Ant {
 
   public takeFood(): void {
     this.isHoldingFood = true;
-    this.rad -= Math.PI;
+    this.rad += Math.PI;
   }
+
+  // public goHome(): void {}
 }

@@ -18,3 +18,17 @@ export function createRandArray(amount: number): number[] {
     .map(() => Math.random());
   return arr;
 }
+
+// export function clamp(value, min, max) {
+//   return Math.min(Math.max(this, min), max);
+// };
+
+export function mapFromRangeToAnOther(
+  value: number,
+  x1: number,
+  y1: number,
+  x2: number,
+  y2: number
+): number {
+  return ((value - x1) * (y2 - x2)) / (y1 - x1) + x2;
+}
