@@ -12,8 +12,8 @@ enum Turn {
 }
 
 export class Ant {
-  private speed = 1;
-  private turnDegAngle = 3;
+  private speed = 0.5;
+  private turnDegAngle = 2.5;
   private turningDir: Turn = Turn.NULL;
   private rad: number;
   public randPoolIndex: number = randomIntFromInterval(0, RANDOM_POOL.length);
@@ -59,10 +59,10 @@ export class Ant {
     }
 
     if (this.turningDir === Turn.NULL) {
-      if (this.intend < 0.001) {
+      if (this.intend < 0.08) {
         this.turningDir = Turn.RIGHT;
-      } else if (this.intend > 0.999) {
-        this.turningDir = Turn.RIGHT;
+      } else if (this.intend > 0.92) {
+        this.turningDir = Turn.LEFT;
       }
     } else {
       this.manageCurrentTurn();
@@ -75,9 +75,9 @@ export class Ant {
     } else {
       this.turnRight();
     }
-    // if (this.intend < 0.2) {
-    //   this.turningDir = Turn.NULL;
-    // }
+    if (this.intend < 0.2) {
+      this.turningDir = Turn.NULL;
+    }
   }
 
   turnRight(): void {

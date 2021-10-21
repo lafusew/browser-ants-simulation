@@ -21,14 +21,14 @@ function createAnts(amount: number): void {
 function init(ctx: CanvasRenderingContext2D): void {
   canvas.height = HEIGHT;
   canvas.width = WIDTH;
-  ctx.fillStyle = '#191019';
+  ctx.fillStyle = '#0D080C';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   document.getElementById('app')?.append(canvas);
-  createAnts(20000);
+  createAnts(2);
 }
 
 function draw(ctx: CanvasRenderingContext2D): void {
-  ctx.fillStyle = 'rgba(25, 16, 25, 0.1)';
+  ctx.fillStyle = 'rgba(13, 8, 12, 0.1)';
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   ants.forEach((ant) => {
     ant.moove();
