@@ -4,6 +4,13 @@ import {
   randomIntFromInterval
 } from './helpers/maths';
 
+export enum GlobalDir {
+  TOP,
+  LEFT,
+  RIGHT,
+  BOT
+}
+
 const RANDOM_POOL = createRandArray(10000);
 enum Turn {
   RIGHT = 'right',
@@ -12,14 +19,15 @@ enum Turn {
 }
 
 export class Ant {
-  private speed = 0.6;
-  private turnDegAngle = 2.4;
+  private speed = 1.4;
+  private turnDegAngle = 3.4;
   private turningDir: Turn = Turn.NULL;
   private rad: number;
   public baseRadAngle: number;
   public randPoolIndex: number = randomIntFromInterval(0, RANDOM_POOL.length);
   public color = '#D0CD94';
   public isHoldingFood = false;
+  public isGoingTowardHome = false;
 
   canvasWidth: number;
   canvasHeight: number;
@@ -100,8 +108,20 @@ export class Ant {
     }
   }
 
-  public getCurrenAngle(): void {
-    console.log(Math.abs(this.rad) / (2 * Math.PI));
+  public getCurrenAngle(): GlobalDir {
+    if (Math.PI / 4 < this.rad && this.rad < (3 * Math.PI) / 4) {
+      return GlobalDir.BOT;
+    }
+
+    if ((3 * Math.PI) / 4 < this.rad && this.rad < (5 * Math.PI) / 4) {
+      return GlobalDir.LEFT;
+    }
+
+    if ((5 * Math.PI) / 4 < this.rad && this.rad < (7 * Math.PI) / 4) {
+      return GlobalDir.TOP;
+    }
+
+    return GlobalDir.RIGHT;
   }
 
   public respawn(): void {
@@ -118,5 +138,14 @@ export class Ant {
     this.rad += Math.PI;
   }
 
-  // public goHome(): void {}
+  // public goHome(): void {
+  //   this.rad = this.getAngleToCenter();
+  // }
+
+  // getAngleToCenter(): number {
+  //   return (
+  //     this.baseRadAngle -
+  //     Math.atan2(this.canvasWidth / 2 - this.x, this.canvasHeight / 2 - this.y)
+  //   );
+  // }
 }
