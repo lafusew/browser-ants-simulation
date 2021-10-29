@@ -3,7 +3,7 @@ import {
   createRandArray,
   degToRad,
   randomIntFromInterval
-} from './helpers/maths';
+} from '../helpers/maths';
 
 export enum GlobalDir {
   TOP,
@@ -138,15 +138,4 @@ export class Ant {
     this.isHoldingFood = true;
     this.rad += Math.PI;
   }
-
-  // public goHome(): void {
-  //   this.rad = this.getAngleToCenter();
-  // }
-
-  // getAngleToCenter(): number {
-  //   return (
-  //     this.baseRadAngle -
-  //     Math.atan2(this.canvasWidth / 2 - this.x, this.canvasHeight / 2 - this.y)
-  //   );
-  // }
 }
