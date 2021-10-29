@@ -51,3 +51,35 @@ code {
   color: #6e6e6e;
   font-family:  'Anonymous Pro', monospace;
 }
+
+input {
+  max-width: 100px;
+  margin-top: 8px;
+}
+
+#params-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+#params-container div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  font-size: 16px;
+  margin-left: 24px;
+}
+
+#params-container button {
+  padding: 8px 16px;
+  color: white;
+  background: rgb(70, 70, 70);
+}
+
+#params-container button:hover {
+  background: rgb(92, 92, 92);
+}
+
+
+  
