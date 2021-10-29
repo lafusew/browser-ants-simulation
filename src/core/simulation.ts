@@ -43,6 +43,7 @@ export class AntsSimulation {
     );
   }
 
+  // Update all ants & pheromone tile data that will be used in render()
   updateSimulation(): void {
     // Global pheromone decay
     this.pheromoneMap.forEach((row) => {
@@ -59,9 +60,12 @@ export class AntsSimulation {
 
     // Ants intern moovemoment behavior
     this.ants.forEach((ant) => {
+      /* ASP moove() will take pheromonesTiles as params *
+       * and use them to choose where it mooves           *
+       * currently moove() is just wonderAround()        */
       ant.moove();
 
-      // Temporary food taking
+      // Temporary food taking on the edges of the canvas
       if (
         ant.x > this.canvas.width ||
         ant.x < 0 ||
@@ -77,6 +81,7 @@ export class AntsSimulation {
     });
   }
 
+  // All required draws only.
   render(): void {
     // Draw background
     this.ctx.fillStyle = 'rgba(13, 8, 12, 0.1)';
