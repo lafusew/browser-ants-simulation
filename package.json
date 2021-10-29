@@ -1,39 +1,20 @@
 {
-  "name": "parcel-typescript",
-  "version": "0.0.1",
-  "description": "Parcel Typescript \"starter kit\"",
-  "author": "lafusew",
-  "license": "MIT",
-  "directories": {
-    "lib": "lib",
-    "test": "test"
-  },
-  "files": [
-    "bin/",
-    "lib/",
-    "src/"
-  ],
+  "name": "ants",
+  "version": "0.0.0",
   "scripts": {
-    "start": "parcel serve src/index.html",
-    "build": "cross-env NODE_ENV=production parcel build src/index.html --public-url .",
-    "watch": "parcel watch src/index.html",
-    "predeploy": "rm -rf dist && cross-env NODE_ENV=production parcel build src/index.html --public-url .",
-    "deploy": "gh-pages -d dist",
-    "lint": "eslint src/index.ts"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "serve": "vite preview",
+    "lint": "eslint src/main.ts"
   },
   "devDependencies": {
+    "typescript": "^4.3.2",
+    "vite": "^2.6.4",
     "@typescript-eslint/eslint-plugin": "^4.28.2",
     "@typescript-eslint/parser": "^4.28.2",
-    "cross-env": "^5.2.0",
     "eslint": "^7.30.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
-    "parcel": "^2.0.0",
-    "parcel-bundler": "^1.12.5",
-    "prettier": "^2.3.2",
-    "typescript": "^4.3.5"
-  },
-  "dependencies": {
-    "src": "^1.1.2"
+    "prettier": "^2.3.2"
   }
 }
