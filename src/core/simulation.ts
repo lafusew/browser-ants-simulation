@@ -61,16 +61,18 @@ export class AntsSimulation {
     this.ants.forEach((ant) => {
       ant.moove();
 
-      try {
-        const { foodAvailableToTake } = this.updatePheromoneTile(
-          ant.x,
-          ant.y,
-          ant.isHoldingFood
-        );
+      // Temporary food taking
+      if (
+        ant.x > this.canvas.width ||
+        ant.x < 0 ||
+        ant.y < 0 ||
+        ant.y > this.canvas.height
+      ) {
+        ant.takeFood();
+      }
 
-        if (foodAvailableToTake) {
-          ant.takeFood();
-        }
+      try {
+        this.updatePheromoneTile(ant.x, ant.y, ant.isHoldingFood);
       } catch {}
     });
   }
