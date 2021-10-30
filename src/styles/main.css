@@ -4,7 +4,9 @@ html, body {
   margin: 0;
   padding: 0;
   font-size: 0;
+  background-color: #f4f4f4;
 }
+
 * {
   margin: 0;
   padding: 0;
@@ -12,19 +14,11 @@ html, body {
   font-family: 'Anonymous Pro', monospace;
 }
 
-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-}
-
-section {
+#app {
   width: 100vw;
   display: flex;
+  justify-content: center;
   align-items: center;
-  flex-direction: column;
   color: #222222;
 }
 
@@ -32,24 +26,13 @@ h1 {
   font-weight: 700;
   font-size: 36px;
   margin-bottom: 24px;
-}
-
-strong {
-  font-weight: 700;
-  color: #2f5bff;
+  background-color: rgba(27, 148, 63, 0.253);
+  color: rgb(27, 148, 63);
+  padding: 2px 8px; 
 }
 
 p {
   text-align: center;
-}
-
-code {
-  margin: 32px 16px; 
-  padding: 8px 16px;
-  border-radius: 4px;
-  background-color: #dddddd;
-  color: #6e6e6e;
-  font-family:  'Anonymous Pro', monospace;
 }
 
 input {
@@ -57,29 +40,107 @@ input {
   margin-top: 8px;
 }
 
-#params-container {
+header {
   display: flex;
-  align-items: center;
-  margin-bottom: 32px;
+  width: 100vw;
+  justify-content: center;
+  margin-top: 60px;
+  margin-bottom: 24px;
 }
 
-#params-container div {
+footer {
+  position: fixed;
+  bottom: 24px;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+
+footer .params-container {
+  margin: 0px 16px;
+}
+
+.params-container {
+  display: flex;
+  padding: 16px;
+  background-color: rgba(27, 148, 63, 0.253);
+  color: rgb(27, 148, 63);
+}
+
+.population-container {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   font-size: 16px;
-  margin-left: 24px;
+  margin-right: 8px;
 }
 
-#params-container button {
+.params-container button {
+  border: none;
   padding: 8px 16px;
-  color: white;
-  background: rgb(70, 70, 70);
+  color: rgba(255, 255, 255, 0.842);
 }
 
-#params-container button:hover {
-  background: rgb(92, 92, 92);
+.params-container .control-btn {
+  margin-right: 8px;
 }
 
+.params-container #stop {  
+  background: rgb(141, 27, 27)
+}
 
-  
+.params-container #stop:hover {  
+  background: rgb(160, 31, 31)
+}
+
+.params-container #pause {  
+  background: rgb(192, 138, 38)
+}
+
+.params-container #pause:hover {  
+  background: rgb(207, 149, 42)
+}
+
+.params-container #start {  
+  background: rgb(23, 121, 52);
+}
+
+.params-container #start:hover {  
+  background: rgb(29, 155, 67);
+}
+
+#population-count {
+  font-weight: bold;
+}
+
+.population-btn {
+  margin-left: 8px;
+  background: rgb(23, 121, 52);
+  padding: 8px 8px!important;
+}
+
+.population-btn:hover {
+  background: rgb(27, 145, 62);
+  padding: 8px 8px!important;
+}
+
+#mobile {
+  padding: 16px;
+  font-size: 16px;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0; 
+  justify-content: center;
+  align-items: center;
+  background-color: #f4f4f4;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+}
+
+@media screen and (max-width: 640px){
+  #mobile {
+    display: flex;
+  }
+}

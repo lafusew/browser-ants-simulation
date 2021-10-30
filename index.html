@@ -7,20 +7,38 @@
     <title>Ants</title>
   </head>
   <body>
-    <h1>Trying to simulate Ants</h1>
-    <div id='params-container'>
-      <button id="start">Start!</button>
-      <div>
-        <p>
-          How many ants?
-        </p>
-        <input id="amount" type="number" value=50>
-      </div>
+    <div id='mobile'>
+      <p>Sorry :/<br>This simulation is only available on wider screens</p>
     </div>
+    <header>
+      <h1>Trying to simulate Ants</h1>
+    </header>
     <main>
       <section id="app">
       </section>
     </main>
+    <footer>
+      <div class='params-container'>
+        <button class="control-btn" id="start">Start</button>
+        <button class="control-btn" id="pause" style="width: 76px;">Pause</button>
+        <button class="control-btn" id="stop">Stop</button> 
+      </div>
+      <div id="population-control" class="params-container">
+        <div class="population-container">
+          <p>
+            Ants:
+          </p>
+          <div id="population-count">
+          </div>
+        </div>
+        <button class="population-btn">-100</button> 
+        <button class="population-btn">-50</button>
+        <button class="population-btn">-10</button>
+        <button class="population-btn">+10</button>
+        <button class="population-btn">+50</button>
+        <button class="population-btn">+100</button>
+      </div>
+    </footer>
     <script src="./src/main.ts" type="module"></script>
   </body>
 </html>
