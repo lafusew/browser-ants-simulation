@@ -1,6 +1,6 @@
 <p align="center">
   <a href="">
-    <img src="https://raw.githubusercontent.com/lafusew/browser-ants-simulation/main/src/img/md_title.png" alt="Ants Simulation" width="80%"/>
+    <img src="https://raw.githubusercontent.com/lafusew/browser-ants-simulation/main/src/img/md_header.png" alt="Ants Simulation" width="90%"/>
   </a>
 </p>
 
